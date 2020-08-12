@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1>Pota app</h1>
+      <h1>POTA app</h1>
     </div>
   );
 }
