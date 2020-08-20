@@ -1,0 +1,222 @@
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: "PT Sans", sans-serif;
+  background-color: #e5eef5;
+  color: #0a1b17;
+}
+
+.app_cont {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.main_title {
+  font-size: 14px;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  background-color: transparent;
+  max-width: 400px;
+  padding: 12px;
+}
+
+.summary_item {
+  background-color: #ffffff;
+  border-radius: 16px;
+  margin: 6px;
+  padding: 12px;
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  justify-content: space-between;
+  .sum_desc {
+    .icon_wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+
+      svg {
+        font-size: 22px;
+      }
+
+      &.not_started {
+        background-color: #fe2965;
+      }
+
+      &.doing {
+        background-color: #a86be4;
+      }
+
+      &.done {
+        background-color: #05c4a2;
+      }
+
+      &.total {
+        background-color: #fea64a;
+      }
+    }
+  }
+
+  .sum_indi {
+    font-size: 30px;
+    font-weight: 700;
+  }
+}
+
+.task_cont {
+  overflow-y: scroll;
+  overflow-x: auto;
+  min-width: 300px;
+  padding: 32px;
+  background-color: #ffffff;
+  flex: 1;
+  -webkit-box-shadow: -8px -1px 6px -4px rgba(187, 204, 222, 1);
+  -moz-box-shadow: -8px -1px 6px -4px rgba(187, 204, 222, 1);
+  box-shadow: -8px -1px 6px -4px rgba(187, 204, 222, 1);
+
+  .task_item {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 0;
+    display: flex;
+    align-items: flex-end;
+
+    .task_id {
+      background-color: #e5eef5;
+      font-size: 28px;
+      margin-right: 12px;
+      padding: 4px 6px;
+      min-width: 40px;
+      border-radius: 4px;
+      .task_status {
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+
+      &.notstarted {
+        background-color: #fe296550;
+      }
+
+      &.doing {
+        background-color: #a86be4;
+      }
+
+      &.done {
+        background-color: #05c4a29e;
+      }
+
+      &.stop {
+        background-color: #fea64a;
+      }
+    }
+
+    .task_content {
+      padding-bottom: 4px;
+    }
+
+    + .task_item {
+      border-top: 1px solid #e5eef5;
+    }
+  }
+}
+
+.spot-cont {
+  width: 80%;
+  padding: 0;
+  z-index: 1000;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100px;
+  border-radius: 8px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+
+  display: flex;
+  flex-direction: column;
+
+  .input_wrapper {
+    display: flex;
+    border-bottom: 1px solid #0a1b17;
+    background-color: #f0f0f0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    .input_icon {
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 10px;
+    }
+
+    input {
+      font-size: 22px;
+      background-color: #f0f0f0;
+      padding: 12px 20px;
+      border: none;
+      flex: 1;
+      border-radius: 8px;
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .help_cmd {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    .cmd_item {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      .cmd_type {
+        background-color: #0a1b17;
+        color: #ffffff;
+        padding: 6px 12px;
+        margin-right: 8px;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .cmd_desc {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.help_box {
+  font-size: 18px;
+  padding: 8px 20px;
+  margin: 0 20px;
+  text-align: center;
+  font-weight: 600;
+
+  + .help_box {
+    border-top: 1px solid;
+  }
+}
+
+.today_title {
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 34px;
+}
