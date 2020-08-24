@@ -23,7 +23,7 @@ body {
   flex-wrap: wrap;
   align-items: flex-start;
   background-color: transparent;
-  max-width: 400px;
+  max-width: 320px;
   padding: 12px;
 }
 
@@ -33,10 +33,11 @@ body {
   margin: 6px;
   padding: 12px;
   flex: 1;
-  min-width: 100px;
+  min-width: 80px;
   display: flex;
   justify-content: space-between;
   .sum_desc {
+    font-size: 14px;
     .icon_wrap {
       width: 32px;
       height: 32px;
@@ -94,13 +95,14 @@ body {
 
     .task_id {
       background-color: #e5eef5;
-      font-size: 28px;
+      font-size: 24px;
       margin-right: 12px;
-      padding: 4px 6px;
-      min-width: 40px;
+      padding: 2px 4px;
+      min-width: 34px;
       border-radius: 4px;
       .task_status {
-        font-size: 10px;
+        font-size: 8px;
+        margin-top: -6px;
         text-transform: uppercase;
       }
 
