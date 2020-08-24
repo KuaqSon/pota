@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "71e9d3ccf75be0eab5467f8518af4972",
+    "revision": "73950e50d6fe0f38b3a6f14308261e91",
     "url": "/pota/index.html"
   },
   {
-    "revision": "70b9359a59d8e22f631e",
-    "url": "/pota/static/css/main.bcf181a3.chunk.css"
+    "revision": "f4ffd5672db481c33805",
+    "url": "/pota/static/css/main.b7beb283.chunk.css"
   },
   {
     "revision": "71dc35b14cb334f83593",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pota/static/js/2.f72029bb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "70b9359a59d8e22f631e",
+    "revision": "f4ffd5672db481c33805",
     "url": "/pota/static/js/main.ec43f731.chunk.js"
   },
   {
