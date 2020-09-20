@@ -112,7 +112,14 @@ const parseCmd = (cmd: string): Cmd => {
 };
 
 const newTask = (state: GlobalState, data: string): GlobalState => {
-  const id = state.tasks && state.tasks.length > 0 ? Math.max(...state.tasks.map((x) => Number(x.id))) + 1 : 1;
+  if (!data) {
+    return state;
+  }
+
+  const id =
+    state.tasks && state.tasks.length > 0
+      ? Math.max(...state.tasks.map((x) => Number(x.id))) + 1
+      : 1;
   const tasks = [
     ...state.tasks,
     {
@@ -126,6 +133,10 @@ const newTask = (state: GlobalState, data: string): GlobalState => {
 
 const editTask = (state: GlobalState, data: string): GlobalState => {
   const slugs = data.trim().split(" ");
+  if (slugs.length < 2) {
+    return state;
+  }
+
   const id = slugs[0];
   const content = slugs.slice(1).join(" ");
 
@@ -174,15 +185,14 @@ const deleteTask = (state: GlobalState, data: string): GlobalState => {
 };
 
 const exportTasks = (state: GlobalState, data: string): void => {
-  let text = "";
+  let tasks = [];
   if (data) {
     const ids = data.split(" ").map((x) => x.trim());
-    text = state.tasks
+    tasks = state.tasks
       .filter((x) => ids.indexOf(x.id) > -1)
-      .map((x) => x.name.trim())
-      .join(" & ");
+      .map((x) => x.name.trim());
   } else {
-    text = state.tasks.map((x) => x.name.trim()).join(" & ");
+    tasks = state.tasks.map((x) => x.name.trim());
   }
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(tasks.map((x) => `- ${x}`).join("\n"));
 };
