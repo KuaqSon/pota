@@ -36,7 +36,7 @@ function App() {
       Escape: () => {
         setState({ ...state, spot: false });
       },
-      Space: () => {
+      Enter: () => {
         if (state.spot) {
           return;
         }

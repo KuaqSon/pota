@@ -22,14 +22,22 @@ const taskSatusText = (status: TaskStatus): string => {
 };
 
 const TaskList = (props: Props) => {
-  const tasks: Task[] = props.state && props.state.tasks ? props.state.tasks : [];
+  const tasks: Task[] =
+    props.state && props.state.tasks ? props.state.tasks : [];
 
   return (
     <div className="task_cont">
       {tasks.map((t, index: number) => (
-        <div key={index} className="task_item">
-          <div className={`task_id ${TaskStatus[t.status].toLowerCase()}`}>
-            {t.id}.<div className="task_status" dangerouslySetInnerHTML={{ __html: taskSatusText(t.status) }}></div>
+        <div
+          key={index}
+          className={`task_item ${TaskStatus[t.status].toLowerCase()}`}
+        >
+          <div className="task_id">
+            {t.id}.
+            <div
+              className="task_status"
+              dangerouslySetInnerHTML={{ __html: taskSatusText(t.status) }}
+            ></div>
           </div>
           <div className="task_content">{t.name}</div>
         </div>

@@ -5,6 +5,58 @@ import { ReactComponent as DoingIcon } from "../assets/doing.svg";
 import { ReactComponent as DoneIcon } from "../assets/done.svg";
 import { ReactComponent as ScheduleIcon } from "../assets/schedule.svg";
 
+interface CmdDesc {
+  cmd: string;
+  desc: string;
+}
+
+const cmds: CmdDesc[] = [
+  {
+    cmd: "Press ENTER",
+    desc: "to START",
+  },
+  {
+    cmd: "Press ESC",
+    desc: "Cancel",
+  },
+  {
+    cmd: "[task / t]  <Task Name>",
+    desc: "Create new task",
+  },
+  {
+    cmd: "[edit / e]  <Task ID> <New Task Name>",
+    desc: "Edit task name",
+  },
+  {
+    cmd: "[delete / d] <Task ID> <Task ID> <Task ID> ...",
+    desc: "Delete task by ID",
+  },
+  {
+    cmd: "[begin / be] <Task ID>",
+    desc: "Begin a task by ID",
+  },
+  {
+    cmd: "[stop / st] <Task ID>",
+    desc: "Stop a task by ID",
+  },
+  {
+    cmd: "[finish / fi] <Task ID>",
+    desc: "Finish a task by ID",
+  },
+  {
+    cmd: "[export / ex]",
+    desc: "Export all tasks",
+  },
+  {
+    cmd: "[export / ex] <Task ID> <Task ID> <Task ID> ..",
+    desc: "Export task list by IDs",
+  },
+  {
+    cmd: "[reset]",
+    desc: "Reset the board",
+  },
+];
+
 const Today = () => {
   const now = new Date().toString();
   const day = now.slice(0, 4);
@@ -26,11 +78,15 @@ interface Props {
 }
 
 const Summary = (props: Props) => {
-  const tasks: Task[] = props.state && props.state.tasks ? props.state.tasks : [];
+  const tasks: Task[] =
+    props.state && props.state.tasks ? props.state.tasks : [];
 
   const doing = tasks.filter((x) => x.status === TaskStatus.Doing).length;
-  const done = tasks.filter((x) => x.status === TaskStatus.Done || x.status === TaskStatus.Stop).length;
-  const notStarted = tasks.filter((x) => x.status === TaskStatus.NotStarted).length;
+  const done = tasks.filter(
+    (x) => x.status === TaskStatus.Done || x.status === TaskStatus.Stop
+  ).length;
+  const notStarted = tasks.filter((x) => x.status === TaskStatus.NotStarted)
+    .length;
 
   return (
     <div>
@@ -72,9 +128,15 @@ const Summary = (props: Props) => {
           </div>
           <div className="sum_indi">{notStarted}</div>
         </div>
+        <div className="help_cmd">
+          {cmds.map((c, index) => (
+            <div key={index} className="cmd_item">
+              <div className="cmd_type">{c.cmd}</div>
+              <div className="cmd_desc">{c.desc}</div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="help_box">Press "SPACE" to start</div>
-      <div className="help_box">Press "ESC" to cancel</div>
     </div>
   );
 };
