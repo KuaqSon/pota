@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "73950e50d6fe0f38b3a6f14308261e91",
+    "revision": "1990f7ce06cb815fc377d3a232215a75",
     "url": "/pota/index.html"
   },
   {
-    "revision": "f4ffd5672db481c33805",
-    "url": "/pota/static/css/main.b7beb283.chunk.css"
+    "revision": "f6cd97ceff536b262ce9",
+    "url": "/pota/static/css/main.c6bb1f48.chunk.css"
   },
   {
     "revision": "71dc35b14cb334f83593",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pota/static/js/2.f72029bb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f4ffd5672db481c33805",
-    "url": "/pota/static/js/main.ec43f731.chunk.js"
+    "revision": "f6cd97ceff536b262ce9",
+    "url": "/pota/static/js/main.240d998d.chunk.js"
   },
   {
     "revision": "02439ac94839e99cd9ab",
@@ -28,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pota/static/media/all.2de2027e.svg"
   },
   {
-    "revision": "6538478dc19c18af7f53ab40cd3cace8",
-    "url": "/pota/static/media/command.6538478d.svg"
+    "revision": "7802831799d3c70067392a3ced6e51cf",
+    "url": "/pota/static/media/command.78028317.svg"
   },
   {
     "revision": "5c02f5d8662d02a7ccefaca395545a57",
