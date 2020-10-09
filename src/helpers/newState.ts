@@ -1,4 +1,4 @@
-import { GlobalState, Task, TaskStatus } from "../models";
+import { Days, GlobalState, Task, TaskStatus } from "../models";
 
 enum CmdType {
   Task = "t",
@@ -17,8 +17,19 @@ interface Cmd {
   data: string;
 }
 
+export const initToday = (): Days => {
+  const now = new Date();
+  const today: Days = {
+    did: `${now.getDate()}`,
+    date: now.toISOString().slice(0, 10),
+    tasks: [],
+  };
+
+  return today;
+};
+
 export const defaultState: GlobalState = {
-  tasks: [],
+  days: [initToday()],
   spot: false,
 };
 
@@ -60,7 +71,10 @@ const parseCmd = (cmd: string): Cmd => {
     return cmdParser;
   }
 
-  const slugs = cmd.trim().split(" ");
+  const slugs = cmd
+    .trim()
+    .split(" ")
+    .filter((x) => !!x);
   cmdParser.data = slugs.slice(1).join(" ");
   const type = slugs[0].toLowerCase();
 
@@ -116,19 +130,33 @@ const newTask = (state: GlobalState, data: string): GlobalState => {
     return state;
   }
 
-  const id =
-    state.tasks && state.tasks.length > 0
-      ? Math.max(...state.tasks.map((x) => Number(x.id))) + 1
-      : 1;
-  const tasks = [
-    ...state.tasks,
-    {
-      id: `${id}`,
-      name: data,
-      status: TaskStatus.NotStarted,
-    } as Task,
-  ];
-  return { ...state, tasks };
+  const slugs = data.split(" ");
+
+  let activeDay = `${new Date().getDate()}`;
+  let taskName = data;
+
+  if (["d", "day"].indexOf(slugs[0].toLowerCase()) > -1 && slugs.length > 1) {
+    activeDay = slugs[1];
+    taskName = slugs.slice(2).join(" ");
+  }
+
+  if (!taskName) return state;
+
+  state.days.forEach((day: Days) => {
+    if (day.did === activeDay) {
+      const id = day.tasks && day.tasks.length > 0 ? Math.max(...day.tasks.map((x) => Number(x.id))) + 1 : 1;
+      day.tasks = [
+        ...day.tasks,
+        {
+          id: `${id}`,
+          name: taskName,
+          status: TaskStatus.NotStarted,
+        } as Task,
+      ];
+    }
+  });
+
+  return state;
 };
 
 const editTask = (state: GlobalState, data: string): GlobalState => {
@@ -137,12 +165,51 @@ const editTask = (state: GlobalState, data: string): GlobalState => {
     return state;
   }
 
-  const id = slugs[0];
-  const content = slugs.slice(1).join(" ");
+  let activeDay = `${new Date().getDate()}`;
+  let id = slugs[0];
+  let taskName = slugs.slice(1).join(" ");
 
-  state.tasks.forEach((task) => {
-    if (task.id === id) {
-      task.name = content;
+  if (["d", "day"].indexOf(slugs[0].toLowerCase()) > -1 && slugs.length > 3) {
+    activeDay = slugs[1];
+    id = slugs[2];
+    taskName = slugs.slice(3).join(" ");
+  }
+
+  if (!taskName) return state;
+
+  state.days.forEach((day: Days) => {
+    if (day.did === activeDay) {
+      day.tasks.forEach((task: Task) => {
+        if (task.id === id) {
+          task.name = taskName;
+        }
+      });
+    }
+  });
+
+  return state;
+};
+
+const updateTaskStatus = (state: GlobalState, data: string, status: TaskStatus) => {
+  const slugs = data.split(" ");
+
+  let activeDay = `${new Date().getDate()}`;
+  let taskId = data;
+
+  if (["d", "day"].indexOf(slugs[0].toLowerCase()) > -1 && slugs.length > 2) {
+    activeDay = slugs[1];
+    taskId = slugs[2];
+  }
+
+  if (!taskId) return state;
+
+  state.days.forEach((day: Days) => {
+    if (day.did === activeDay) {
+      day.tasks.forEach((task: Task) => {
+        if (task.id === taskId) {
+          task.status = status;
+        }
+      });
     }
   });
 
@@ -150,49 +217,49 @@ const editTask = (state: GlobalState, data: string): GlobalState => {
 };
 
 const beginTask = (state: GlobalState, data: string): GlobalState => {
-  state.tasks.forEach((task) => {
-    if (task.id === data.trim()) {
-      task.status = TaskStatus.Doing;
-    }
-  });
-
-  return state;
+  return updateTaskStatus(state, data, TaskStatus.Doing);
 };
 
 const stopTask = (state: GlobalState, data: string): GlobalState => {
-  state.tasks.forEach((task) => {
-    if (task.id === data.trim()) {
-      task.status = TaskStatus.Stop;
-    }
-  });
-
-  return state;
+  return updateTaskStatus(state, data, TaskStatus.Stop);
 };
 
 const finishTask = (state: GlobalState, data: string): GlobalState => {
-  state.tasks.forEach((task) => {
-    if (task.id === data.trim()) {
-      task.status = TaskStatus.Done;
+  return updateTaskStatus(state, data, TaskStatus.Done);
+};
+
+const deleteTask = (state: GlobalState, data: string): GlobalState => {
+  const slugs = data.split(" ");
+
+  let activeDay = `${new Date().getDate()}`;
+  let taskId = data;
+
+  if (["d", "day"].indexOf(slugs[0].toLowerCase()) > -1 && slugs.length > 2) {
+    activeDay = slugs[1];
+    taskId = slugs[2];
+  }
+
+  if (!taskId) return state;
+
+  state.days.forEach((day: Days) => {
+    if (day.did === activeDay) {
+      day.tasks = day.tasks.filter((t) => t.id !== taskId);
     }
   });
 
   return state;
 };
 
-const deleteTask = (state: GlobalState, data: string): GlobalState => {
-  const tasks = state.tasks.filter((t) => t.id !== data);
-  return { ...state, tasks };
-};
-
 const exportTasks = (state: GlobalState, data: string): void => {
-  let tasks = [];
-  if (data) {
-    const ids = data.split(" ").map((x) => x.trim());
-    tasks = state.tasks
-      .filter((x) => ids.indexOf(x.id) > -1)
-      .map((x) => x.name.trim());
-  } else {
-    tasks = state.tasks.map((x) => x.name.trim());
+  let tasks: Task[] = [];
+  if (state.days.length === 0) {
+    return;
   }
-  navigator.clipboard.writeText(tasks.map((x) => `- ${x}`).join("\n"));
+
+  if (data) {
+    state.days.filter((day: Days) => day.did === data).forEach((day: Days) => (tasks = [...tasks, ...day.tasks]));
+  } else {
+    tasks = state.days[0].tasks;
+  }
+  navigator.clipboard.writeText(tasks.map((x) => `- ${x.name}`).join("\n"));
 };

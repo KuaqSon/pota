@@ -1,6 +1,12 @@
 export interface GlobalState {
-  tasks: Task[];
+  days: Days[];
   spot: boolean;
+}
+
+export interface Days {
+  did: string;
+  date: string;
+  tasks: Task[];
 }
 
 export interface Task {

@@ -78,15 +78,16 @@ interface Props {
 }
 
 const Summary = (props: Props) => {
-  const tasks: Task[] =
-    props.state && props.state.tasks ? props.state.tasks : [];
+  let tasks: Task[] = [];
+  if (props.state && props.state.days) {
+    props.state.days.forEach((x) => {
+      tasks = [...tasks, ...x.tasks];
+    });
+  }
 
   const doing = tasks.filter((x) => x.status === TaskStatus.Doing).length;
-  const done = tasks.filter(
-    (x) => x.status === TaskStatus.Done || x.status === TaskStatus.Stop
-  ).length;
-  const notStarted = tasks.filter((x) => x.status === TaskStatus.NotStarted)
-    .length;
+  const done = tasks.filter((x) => x.status === TaskStatus.Done || x.status === TaskStatus.Stop).length;
+  const notStarted = tasks.filter((x) => x.status === TaskStatus.NotStarted).length;
 
   return (
     <div>

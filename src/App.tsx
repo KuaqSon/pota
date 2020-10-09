@@ -3,11 +3,11 @@ import "./app.scss";
 
 import { useEffect, useState } from "react";
 import tinykeys from "tinykeys";
-import { GlobalState } from "./models";
+import { Days, GlobalState } from "./models";
 import Spotlight from "./components/Spotlight";
-import { newState, defaultState } from "./helpers/newState";
+import { newState, defaultState, initToday } from "./helpers/newState";
 import Summary from "./components/Summary";
-import TaskList from "./components/TaskList";
+import DayList from "./components/DayList";
 
 const getInitialState = () => {
   if (window.localStorage) {
@@ -16,7 +16,14 @@ const getInitialState = () => {
       try {
         const parsed = JSON.parse(saved);
         if (parsed) {
-          return { ...parsed, spot: false } as GlobalState;
+          const today = initToday();
+          let initState = { ...parsed, spot: false } as GlobalState;
+
+          if (initState.days[0].did !== today.did) {
+            initState.days = [today, ...initState.days.filter((day: Days) => day.did !== today.did)];
+          }
+
+          return initState;
         }
       } catch {}
     }
@@ -58,7 +65,7 @@ function App() {
       <Spotlight visible={state.spot} onSubmit={handleSpotlightSubmit} />
       <div className="app_cont">
         <Summary state={state} />
-        <TaskList state={state} />
+        <DayList state={state} />
       </div>
     </>
   );
