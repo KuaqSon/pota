@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/pota/static/css/main.c6bb1f48.chunk.css",
-    "main.js": "/pota/static/js/main.240d998d.chunk.js",
+    "main.css": "/pota/static/css/main.9c095f36.chunk.css",
+    "main.js": "/pota/static/js/main.da3ff271.chunk.js",
     "runtime-main.js": "/pota/static/js/runtime-main.b14c66e5.js",
-    "static/js/2.f72029bb.chunk.js": "/pota/static/js/2.f72029bb.chunk.js",
+    "static/js/2.727c73d2.chunk.js": "/pota/static/js/2.727c73d2.chunk.js",
     "index.html": "/pota/index.html",
-    "precache-manifest.79202ceb0b87c9f27fcd1d6ac6217269.js": "/pota/precache-manifest.79202ceb0b87c9f27fcd1d6ac6217269.js",
+    "precache-manifest.5d79a9219056b91368d4ebbf6065d575.js": "/pota/precache-manifest.5d79a9219056b91368d4ebbf6065d575.js",
     "service-worker.js": "/pota/service-worker.js",
-    "static/js/2.f72029bb.chunk.js.LICENSE.txt": "/pota/static/js/2.f72029bb.chunk.js.LICENSE.txt",
+    "static/js/2.727c73d2.chunk.js.LICENSE.txt": "/pota/static/js/2.727c73d2.chunk.js.LICENSE.txt",
     "static/media/all.2de2027e.svg": "/pota/static/media/all.2de2027e.svg",
     "static/media/command.78028317.svg": "/pota/static/media/command.78028317.svg",
     "static/media/doing.5c02f5d8.svg": "/pota/static/media/doing.5c02f5d8.svg",
@@ -16,8 +16,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.b14c66e5.js",
-    "static/js/2.f72029bb.chunk.js",
-    "static/css/main.c6bb1f48.chunk.css",
-    "static/js/main.240d998d.chunk.js"
+    "static/js/2.727c73d2.chunk.js",
+    "static/css/main.9c095f36.chunk.css",
+    "static/js/main.da3ff271.chunk.js"
   ]
 }
