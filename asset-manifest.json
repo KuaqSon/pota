@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/pota/static/css/main.9c095f36.chunk.css",
-    "main.js": "/pota/static/js/main.da3ff271.chunk.js",
+    "main.css": "/pota/static/css/main.26e97c6f.chunk.css",
+    "main.js": "/pota/static/js/main.ce2f80fc.chunk.js",
     "runtime-main.js": "/pota/static/js/runtime-main.b14c66e5.js",
     "static/js/2.727c73d2.chunk.js": "/pota/static/js/2.727c73d2.chunk.js",
     "index.html": "/pota/index.html",
-    "precache-manifest.5d79a9219056b91368d4ebbf6065d575.js": "/pota/precache-manifest.5d79a9219056b91368d4ebbf6065d575.js",
+    "precache-manifest.881d8f7c37606ff6df59ed86cbdb0c8c.js": "/pota/precache-manifest.881d8f7c37606ff6df59ed86cbdb0c8c.js",
     "service-worker.js": "/pota/service-worker.js",
     "static/js/2.727c73d2.chunk.js.LICENSE.txt": "/pota/static/js/2.727c73d2.chunk.js.LICENSE.txt",
     "static/media/all.2de2027e.svg": "/pota/static/media/all.2de2027e.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.b14c66e5.js",
     "static/js/2.727c73d2.chunk.js",
-    "static/css/main.9c095f36.chunk.css",
-    "static/js/main.da3ff271.chunk.js"
+    "static/css/main.26e97c6f.chunk.css",
+    "static/js/main.ce2f80fc.chunk.js"
   ]
 }
